@@ -55,7 +55,7 @@ Course Quarter::assignClass(Course newCourse) {
         return newCourse;
 }
 
-int Quarter::getTotalHours() {
+float Quarter::getTotalHours() {
     return totalNumHours;
 }
 

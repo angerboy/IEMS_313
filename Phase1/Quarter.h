@@ -49,10 +49,7 @@ public: //functions
     
     //returns the index of the quarter
     int getQuarterIndex();
-    
-    //return totalNumberOfHours
-    int getTotalHours();
-    
+ 
     //returns course 1
     Course getCourseOne();
     
@@ -64,6 +61,9 @@ public: //functions
     
     //returns course 4
     Course getCourseFour();
+    
+    //returns total number of hours
+    float getTotalHours();
     
 };
 
