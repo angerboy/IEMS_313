@@ -77,6 +77,9 @@ public: //functions
     //removes course
     void removeCourse(Course oldCourse);
     
+    //returns vector of Courses
+    vector<Course>getCourses();
+    
 };
 
 

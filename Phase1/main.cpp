@@ -126,7 +126,6 @@ Quarter * assignClassesGreedily(Course *classArr, Quarter *quarterArr, int numCl
 
 
 void calculateAverageNumberOfHours(Quarter *quarterArr, int numQuarters) {
-    float sum = 0;
     for(int i = 0; i < numQuarters; i++) {
         Quarter q = quarterArr[i];
         cout << "total hours: " << q.getTotalHours() << endl;
@@ -434,8 +433,35 @@ Quarter * pickQuartersToExchangeClasses(Quarter * arr, int numQuarters, Course *
         //if this does not work, iterate through all combinations starting with the heaviest and lightest courses from
         //the heaviest and lightest quarters
         
+        vector<Course>minQuarterCourses = minQuarter.getCourses();
+        vector<Course>maxQuarterCourses = maxQuarter.getCourses();
         
-        
+        for(int i = 0; i < minQuarterCourses.size(); i++) {
+            for(int j = 0; j < maxQuarterCourses.size(); j++) {
+                
+                Course c1 = minQuarterCourses[i];
+                Course c2 = maxQuarterCourses[j];
+                
+                if(isValidSwap(c1, c2, arr2) && c1.getNumHours() < c2.getNumHours()) {
+                    
+                    cout << "********* swapping courses ********" << endl;
+                    
+                    cout << c1.getClassId() << endl;
+                    cout << c2.getClassId() << endl;
+                    
+                    minQuarter.removeCourse(c1);
+                    minQuarter.assignClass(c2);
+                    maxQuarter.removeCourse(c2);
+                    maxQuarter.assignClass(c1);
+                    
+                    c1.assignQuarter(maxQuarter.getQuarterIndex());
+                    c2.assignQuarter(minQuarter.getQuarterIndex());
+                    
+                    arr[minQuarterIndex] = minQuarter;
+                    arr[maxQuarterIndex] = maxQuarter;
+                }
+            }
+        }
     }
     return arr;
 }

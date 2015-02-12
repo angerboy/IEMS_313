@@ -132,3 +132,7 @@ Course Quarter::returnLightestCourse() {
     
     return c;
 }
+
+vector<Course> Quarter::getCourses() {
+    return courses;
+}
