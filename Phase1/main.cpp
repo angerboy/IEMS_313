@@ -96,22 +96,22 @@ void iterateThroughAllQuarters(Quarter *arr, int numQuarters) {
 //    }
 //}
 
-int findBestAssignmentOfClassesToQuarter(Course *classArr, Quarter q, int numClasses) {
-    if(q.isFull())
-        return q.getTotalHours();
-    else {
-        for(int i = 0; i < numClasses; i++) {
-            Course thisCourse = classArr[i];
-            if(thisCourse.getEarliestQuarter() <= q.getQuarterIndex()) {
-                if(!thisCourse.isAssigned()) {
-                    classArr[i] = q.assignClass(thisCourse);
-                    findBestAssignmentOfClassesToQuarter(classArr, q, numClasses);
-                }
-            }
-        }
-        return -1;
-    }
-}
+//int findBestAssignmentOfClassesToQuarter(Course *classArr, Quarter q, int numClasses) {
+//    if(q.isFull())
+//        return q.getTotalHours();
+//    else {
+//        for(int i = 0; i < numClasses; i++) {
+//            Course thisCourse = classArr[i];
+//            if(thisCourse.getEarliestQuarter() <= q.getQuarterIndex()) {
+//                if(!thisCourse.isAssigned()) {
+//                    classArr[i] = q.assignClass(thisCourse);
+//                    findBestAssignmentOfClassesToQuarter(classArr, q, numClasses);
+//                }
+//            }
+//        }
+//        return -1;
+//    }
+//}
 
 float returnTotalWorkHoursWithAssignment(vector<Course>courses, Quarter q) {
     if(q.isFull())
@@ -147,15 +147,33 @@ void fillInEmptyCourses(Course *classArr, Quarter *quarterArr, int numClasses, i
     }
 }
 
+
+
+//this functions assigns courses to quarters based on the earliest possible quarter that you can take the course
 Quarter * assignClassesBasedOnEarliestTaken(Course *classArr, Quarter *quarterArr, int numClasses, int numQuarters) {
+    //this is the return array that stores all of the quarters
     Quarter *returnArr = new Quarter[numQuarters];
+    
+    //Outer loop to iterate through the quarters. Starts at the last quarter
     for(int i = numQuarters - 1; i >= 0; i--) {
+        
+        //the current quarter
         Quarter thisQuarter = quarterArr[i];
         int currentQuarterIndex = i+1;
+        
+        //inner loop iterates through all of the courses
         for(int j = 0; j < numClasses; j++) {
+            
+            //current course in the iteration
             Course thisCourse = classArr[j];
+            
+            //checks if the course can be taken in this quarter and if the course is not already assigned
             if(thisCourse.getEarliestQuarter() == currentQuarterIndex && !thisCourse.isAssigned()) {
+                
+                //checks if the quarter is already full
                 if(!thisQuarter.isFull()) {
+                    
+                    //assigns the course to this quarter
                     thisCourse = thisQuarter.assignClass(thisCourse);
                     classArr[j] = thisCourse;
                 }
@@ -163,32 +181,34 @@ Quarter * assignClassesBasedOnEarliestTaken(Course *classArr, Quarter *quarterAr
         }
         returnArr[i] = thisQuarter;
     }
+    
+    //returns the updated quarter array 
     return returnArr;
 }
 
 
-//assigns classes to the last quarter that can be taken at earliest during the last quarter
-Quarter assignClassesToLastQuarter(Course *classArr, Quarter *quarterArr, int numClasses, int numQuarters) {
-    //gets the last quarter
-    Quarter lastQuarter = quarterArr[numQuarters - 1];
-    
-    //iterates through all classes
-    for(int i = 0; i < numClasses; i++) {
-        Course thisCourse = classArr[i];
-        
-        //checks if the earliest you can take this course is the last quarter and if the course has not already been assigned
-        if(thisCourse.getEarliestQuarter() == numQuarters && !thisCourse.isAssigned()) {
-            if(!lastQuarter.isFull()) {
-                lastQuarter.assignClass(thisCourse);
-            }
-            else {
-                cout << "invalid course scheduling: can not assign course" << endl;
-            }
-        }
-    }
-    
-    return lastQuarter;
-}
+////assigns classes to the last quarter that can be taken at earliest during the last quarter
+//Quarter assignClassesToLastQuarter(Course *classArr, Quarter *quarterArr, int numClasses, int numQuarters) {
+//    //gets the last quarter
+//    Quarter lastQuarter = quarterArr[numQuarters - 1];
+//    
+//    //iterates through all classes
+//    for(int i = 0; i < numClasses; i++) {
+//        Course thisCourse = classArr[i];
+//        
+//        //checks if the earliest you can take this course is the last quarter and if the course has not already been assigned
+//        if(thisCourse.getEarliestQuarter() == numQuarters && !thisCourse.isAssigned()) {
+//            if(!lastQuarter.isFull()) {
+//                lastQuarter.assignClass(thisCourse);
+//            }
+//            else {
+//                cout << "invalid course scheduling: can not assign course" << endl;
+//            }
+//        }
+//    }
+//    
+//    return lastQuarter;
+//}
 
 
 int main(int argc, const char * argv[]) {
