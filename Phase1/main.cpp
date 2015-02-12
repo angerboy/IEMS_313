@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <cmath>
 #include <vector>
 #include "Course.h"
 #include "Quarter.h"
@@ -118,6 +119,7 @@ float returnTotalWorkHoursWithAssignment(vector<Course>courses, Quarter q) {
         return q.getTotalHours();
     else {
         Course thisCourse = courses.front();
+        courses.erase(courses.begin());
         q.assignClass(thisCourse);
         return returnTotalWorkHoursWithAssignment(courses, q);
     }
@@ -138,14 +140,68 @@ void fillInEmptyCourses(Course *classArr, Quarter *quarterArr, int numClasses, i
         }
         
         float optimalNumHours = 47.9;
-        
-        int diffFromOptimal;
+        int optimalDecision;
+        float bestDifferenceSoFar = 100000;
         
         for(int i = 0; i < legalCourses.size(); i++) {
-            
+            Course thisCourse = legalCourses[i];
+            thisQuarter.assignClass(thisCourse);
+            legalCourses.erase(legalCourses.begin() + i);
+            float totalHours = returnTotalWorkHoursWithAssignment(legalCourses, thisQuarter);
+            float tempDiff = fabs(totalHours - optimalNumHours);
+            if(tempDiff < bestDifferenceSoFar) {
+                bestDifferenceSoFar = tempDiff;
+                optimalDecision = i;
+            }
         }
+        
     }
 }
+
+int returnMinOfVector(vector<Course>vec) {
+    int min = -1;
+    float minSoFar = 1000;
+    for(int i = 0; i < vec.size(); i++) {
+        Course c = vec[i];
+        if(c.getNumDepCourse() < minSoFar) {
+            minSoFar = c.getNumDepCourse();
+            min = i;
+        }
+    }
+    
+    return min;
+}
+
+Quarter * assignClassesGreedily(Course *classArr, Quarter *quarterArr, int numClasses, int numQuarters) {
+    for(int i = 0; i < numQuarters; i++) {
+        Quarter thisQuarter = quarterArr[i];
+        
+        vector<Course>legalCourses;
+        
+        //find courses that could be assigned to this quarter
+        for(int j = 0; j < numClasses; j++) {
+            Course thisCourse = classArr[j];
+            if(!thisCourse.isAssigned() && thisCourse.getEarliestQuarter() <= thisQuarter.getQuarterIndex()) {
+                legalCourses.push_back(thisCourse);
+            }
+        }
+        
+        while(legalCourses.size() > 4) {
+            int min = returnMinOfVector(legalCourses);
+            legalCourses.erase(legalCourses.begin() + min);
+        }
+        
+        for(int j = 0; j < legalCourses.size(); j++) {
+            Course c = legalCourses[i];
+            thisQuarter.assignClass(c);
+        }
+        quarterArr[i] = thisQuarter;
+    }
+    
+    return quarterArr;
+}
+
+
 
 
 
@@ -182,7 +238,7 @@ Quarter * assignClassesBasedOnEarliestTaken(Course *classArr, Quarter *quarterAr
         returnArr[i] = thisQuarter;
     }
     
-    //returns the updated quarter array 
+    //returns the updated quarter array
     return returnArr;
 }
 
@@ -250,6 +306,10 @@ int main(int argc, const char * argv[]) {
     Quarter qArr[] = {q1, q2, q3, q4, q5};
     
     Quarter *qArr2 = assignClassesBasedOnEarliestTaken(arr, qArr, 20, 5);
+    iterateThroughAllQuarters(qArr2, 5);
+    
+    
+    qArr2 = assignClassesGreedily(arr, qArr2, 20, 5);
     iterateThroughAllQuarters(qArr2, 5);
     
     return 0;

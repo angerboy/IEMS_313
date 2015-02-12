@@ -40,6 +40,7 @@ public: //functions
     bool isAssigned(); //checks if class is assigned
     int getClassId(); //gets course id
     bool isEmpty(); //returns true if course is empty
+    int getNumDepCourse(); //returns getter for numDepCourses
 };
 
 

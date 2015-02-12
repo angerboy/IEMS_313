@@ -52,5 +52,9 @@ bool Course::isEmpty() {
     return false;
 }
 
+int Course::getNumDepCourse() {
+    return numOfDependentCourses;
+}
+
 
 
