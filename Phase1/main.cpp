@@ -172,6 +172,17 @@ int returnMinOfVector(vector<Course>vec) {
     return min;
 }
 
+Course * overwriteCourseInArray(Course * arr, Course c, int numCourses) {
+    for(int i = 0; i < numCourses; i++) {
+        Course c2 = arr[i];
+        if(c2.getClassId() == c.getClassId()) {
+            arr[i] = c;
+            break;
+        }
+    }
+    return arr;
+}
+
 Quarter * assignClassesGreedily(Course *classArr, Quarter *quarterArr, int numClasses, int numQuarters) {
     for(int i = 0; i < numQuarters; i++) {
         Quarter thisQuarter = quarterArr[i];
@@ -192,14 +203,17 @@ Quarter * assignClassesGreedily(Course *classArr, Quarter *quarterArr, int numCl
         }
         
         for(int j = 0; j < legalCourses.size(); j++) {
-            Course c = legalCourses[i];
-            thisQuarter.assignClass(c);
+            Course c = legalCourses[j];
+            c = thisQuarter.assignClass(c);
+            classArr = overwriteCourseInArray(classArr, c, numClasses);
         }
         quarterArr[i] = thisQuarter;
     }
     
     return quarterArr;
 }
+
+
 
 
 
@@ -305,11 +319,11 @@ int main(int argc, const char * argv[]) {
     //arrays of quarters
     Quarter qArr[] = {q1, q2, q3, q4, q5};
     
-    Quarter *qArr2 = assignClassesBasedOnEarliestTaken(arr, qArr, 20, 5);
-    iterateThroughAllQuarters(qArr2, 5);
+    //Quarter *qArr2 = assignClassesBasedOnEarliestTaken(arr, qArr, 20, 5);
+    //iterateThroughAllQuarters(qArr2, 5);
     
     
-    qArr2 = assignClassesGreedily(arr, qArr2, 20, 5);
+    Quarter *qArr2 = assignClassesGreedily(arr, qArr, 20, 5);
     iterateThroughAllQuarters(qArr2, 5);
     
     return 0;

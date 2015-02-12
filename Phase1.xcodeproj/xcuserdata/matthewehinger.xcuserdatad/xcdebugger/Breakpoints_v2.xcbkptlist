@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phase1/main.cpp"
-            timestampString = "445410306.127365"
+            timestampString = "445411780.048409"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "assignClassesBasedOnEarliestTaken(Course *classArr, Quarter *quarterArr, int numClasses, int numQuarters)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Phase1/main.cpp"
-            timestampString = "445410306.127365"
+            timestampString = "445411780.048409"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "assignClassesBasedOnEarliestTaken(Course *classArr, Quarter *quarterArr, int numClasses, int numQuarters)"
             landmarkType = "7">
          </BreakpointContent>
@@ -49,6 +49,22 @@
             endingLineNumber = "26"
             landmarkName = "Quarter::assignClass(Course newCourse)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Phase1/main.cpp"
+            timestampString = "445411780.048409"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "assignClassesGreedily(Course *classArr, Quarter *quarterArr, int numClasses, int numQuarters)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
