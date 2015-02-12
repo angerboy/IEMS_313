@@ -10,6 +10,8 @@
 #define __Phase1__Course__
 
 #include <stdio.h>
+#include <vector>
+using namespace std;
 
 class Course {
 
@@ -31,6 +33,12 @@ class Course {
     //class id
     int classID;
     
+    //prereq array
+    vector<int>prereqs;
+    
+    //dependent array
+    vector<int>dependents;
+    
 public: //functions
     Course(); //default constructor
     Course(int ID, float hrs, int numDep, int earliest, int latest); //constructor
@@ -41,6 +49,11 @@ public: //functions
     int getClassId(); //gets course id
     bool isEmpty(); //returns true if course is empty
     int getNumDepCourse(); //returns getter for numDepCourses
+    int getQuarterAssigned(); //returns quarter that this class is assigned to
+    vector<int>getPrereqs();
+    vector<int>getDeps();
+    void setPrereqs(vector<int>p);
+    void setDeps(vector<int>d);
 };
 
 

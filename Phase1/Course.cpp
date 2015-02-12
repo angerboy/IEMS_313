@@ -56,5 +56,25 @@ int Course::getNumDepCourse() {
     return numOfDependentCourses;
 }
 
+int Course::getQuarterAssigned() {
+    return quarterBeingTaken;
+}
+
+vector<int> Course::getPrereqs() {
+    return prereqs;
+}
+
+vector<int> Course::getDeps() {
+    return dependents;
+}
+
+void Course::setPrereqs(vector<int>p) {
+    prereqs = p;
+}
+
+void Course::setDeps(vector<int>d) {
+    dependents = d;
+}
+
 
 

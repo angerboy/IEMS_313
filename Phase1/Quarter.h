@@ -34,6 +34,9 @@ class Quarter {
     //total number of hours per week
     float totalNumHours;
     
+    //vector of courses
+    vector<Course>courses;
+    
 public: //functions
     //default constructor
     Quarter();
@@ -64,6 +67,15 @@ public: //functions
     
     //returns total number of hours
     float getTotalHours();
+    
+    //returns most work
+    Course returnHeaviestCourse();
+    
+    //returns least work
+    Course returnLightestCourse();
+    
+    //removes course
+    void removeCourse(Course oldCourse);
     
 };
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FA43F55B-E859-49EA-9079-1C079BC91103</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Phase1</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2C70DC45610C5D1C8B20437A8E01A338CDDD4968</key>
+		<string>https://github.com/angerboy/IEMS_313.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Phase1.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2C70DC45610C5D1C8B20437A8E01A338CDDD4968</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/angerboy/IEMS_313.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2C70DC45610C5D1C8B20437A8E01A338CDDD4968</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2C70DC45610C5D1C8B20437A8E01A338CDDD4968</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Phase1</string>
+		</dict>
+	</array>
+</dict>
+</plist>

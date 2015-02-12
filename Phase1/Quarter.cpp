@@ -23,36 +23,56 @@ Quarter::Quarter(int index) {
  returns true if the assignment is succesful
  returns false if the quarter is full */
 Course Quarter::assignClass(Course newCourse) {
-    if(numCourses == 0) {
-        classOne = newCourse;
+//    if(numCourses == 0) {
+//        classOne = newCourse;
+//        numCourses++;
+//        totalNumHours = totalNumHours + newCourse.getNumHours();
+//        newCourse.assignQuarter(quarterIndex);
+//        return newCourse;
+//    }
+//    else if(numCourses == 1) {
+//        classTwo = newCourse;
+//        numCourses++;
+//        totalNumHours = totalNumHours + newCourse.getNumHours();
+//        newCourse.assignQuarter(quarterIndex);
+//        return newCourse;
+//    }
+//    else if(numCourses == 2) {
+//        classThree = newCourse;
+//        numCourses++;
+//        totalNumHours = totalNumHours + newCourse.getNumHours();
+//        newCourse.assignQuarter(quarterIndex);
+//        return newCourse;
+//    }
+//    else if(numCourses == 3) {
+//        classFour = newCourse;
+//        numCourses++;
+//        totalNumHours = totalNumHours + newCourse.getNumHours();
+//        newCourse.assignQuarter(quarterIndex);
+//        return newCourse;
+//    }
+//    else
+//        return newCourse;
+    
+    if(!isFull()) {
+        courses.push_back(newCourse);
         numCourses++;
         totalNumHours = totalNumHours + newCourse.getNumHours();
         newCourse.assignQuarter(quarterIndex);
         return newCourse;
     }
-    else if(numCourses == 1) {
-        classTwo = newCourse;
-        numCourses++;
-        totalNumHours = totalNumHours + newCourse.getNumHours();
-        newCourse.assignQuarter(quarterIndex);
-        return newCourse;
+    return newCourse;
+}
+
+void Quarter::removeCourse(Course oldCourse) {
+    for(int i = 0;  i < courses.size(); i++) {
+        if(courses[i].getClassId() == oldCourse.getClassId()) {
+            courses.erase(courses.begin() + i);
+            totalNumHours = totalNumHours - oldCourse.getNumHours();
+            numCourses--;
+            oldCourse.assignQuarter(-1);
+        }
     }
-    else if(numCourses == 2) {
-        classThree = newCourse;
-        numCourses++;
-        totalNumHours = totalNumHours + newCourse.getNumHours();
-        newCourse.assignQuarter(quarterIndex);
-        return newCourse;
-    }
-    else if(numCourses == 3) {
-        classFour = newCourse;
-        numCourses++;
-        totalNumHours = totalNumHours + newCourse.getNumHours();
-        newCourse.assignQuarter(quarterIndex);
-        return newCourse;
-    }
-    else
-        return newCourse;
 }
 
 float Quarter::getTotalHours() {
@@ -70,17 +90,45 @@ int Quarter::getQuarterIndex() {
 }
 
 Course Quarter::getCourseOne() {
-    return classOne;
+    return courses[0];
 }
 
 Course Quarter::getCourseTwo() {
-    return classTwo;
+    return courses[1];
 }
 
 Course Quarter::getCourseThree() {
-    return classThree;
+    return courses[2];
 }
 
 Course Quarter::getCourseFour() {
-    return classFour;
+    return courses[3];
+}
+
+Course Quarter::returnHeaviestCourse() {
+    float maxWork = 0.0;
+    Course c;
+    
+    for(int i = 0; i < courses.size(); i++) {
+        if(courses[i].getNumHours() > maxWork) {
+            maxWork = courses[i].getNumHours();
+            c = courses[i];
+        }
+    }
+    
+    return c;
+}
+
+Course Quarter::returnLightestCourse() {
+    float minWork = 100000.0;
+    Course c;
+    
+    for(int i = 0; i < courses.size(); i++) {
+        if(courses[i].getNumHours() < minWork) {
+            minWork = courses[i].getNumHours();
+            c = courses[i];
+        }
+    }
+    
+    return c;
 }
