@@ -389,6 +389,14 @@ Course * constructVectorsForCourses(Course * arr) {
 
 
 Quarter * pickQuartersToExchangeClasses(Quarter * arr, int numQuarters, Course * arr2) {
+	/****NOTE*** 
+	 This code is for swapping between the heaviest and lightest quarters 
+	 recursively until a threshold value is achieved. We have changed our heuristic to
+	 swap between adjacent quarters starting from the back instead of the coded heuristic
+	 in order to maximize the number of legal swaps as well as potentially reduce 
+	 computational complexity 
+	*/
+
     Quarter minQuarter, maxQuarter;
     
     float minWork = 10000.0;
